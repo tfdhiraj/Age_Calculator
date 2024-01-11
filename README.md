@@ -1,2 +1,2 @@
-# Ecarz
-A car website which is responsive made using CSS And HTML
+# Age calculator
+A simple web application to calculate age. 
