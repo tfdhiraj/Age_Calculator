@@ -13,13 +13,13 @@ function showdate() {
   }
 
   //validate the month
-  if (month < 0 || month > 12 || isNaN(month)) {
+  if (month < 1 || month > 12 || isNaN(month)) {
     error.innerText = "Month should be between 1 to 12.";
     return;
   }
 
   //validate the month based on days
-  if (day < 0 || isNaN(day)) {
+  if (day < 1 || isNaN(day)) {
     error.innerText = "Enter a valid number";
     return;
   }
@@ -63,10 +63,15 @@ function showdate() {
   let birthMonth = currentMonth - month;
   let age = currentYear - year;
 
-  if (birthMonth < 0 || (birthMonth === 0 && birthDay < 0)) {
+  if (birthDay < 0) {
+    const daysInPrevMonth = new Date(currentYear, currentMonth - 1, 0).getDate();
+    birthDay += daysInPrevMonth;
+    birthMonth--;
+  }
+
+  if (birthMonth < 0) {
     age--;
     birthMonth += 12;
-    birthDay = day - currentDay;
   }
   if (age < 0) {
     error.innerText = "Enter the year no later than current year";
